@@ -6,7 +6,7 @@ from stable_baselines3 import PPO
 # Create the environment, a stacked environment to speed up the training, having more diverse experiences for each step
 #env = make_vec_env('LunarLander-v2', n_envs=16)
 
-env = gym.make('LunarLander-v2',render_mode="human")
+env = gym.make('LunarLander-v2')
 
 # Instantiate the agent
 model = PPO('MlpPolicy', env, verbose=1, n_steps = 1024,
