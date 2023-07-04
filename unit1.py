@@ -1,5 +1,7 @@
 import gymnasium as gym
 from stable_baselines3 import PPO
+from stable_baselines3.common.evaluation import evaluate_policy
+
 
 
 
@@ -8,7 +10,17 @@ from stable_baselines3 import PPO
 
 env = gym.make('LunarLander-v2',render_mode="human")
 
+
 model = PPO.load("moon_env")
+
+mean_reward, std_reward = evaluate_policy(model, env, n_eval_episodes=10)
+
+print("mean reward",mean_reward)
+print("std reward",std_reward)
+#mean reward 229.8375847608589
+#std reward 93.37386161974413
+
+
 obs = env.reset()[0]
 while True:
     action, _states = model.predict(obs)
